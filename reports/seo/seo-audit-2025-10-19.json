@@ -1,0 +1,17 @@
+{
+  "generatedAt": "2025-10-19T16:55:44.727Z",
+  "results": [
+    {
+      "task": "perf:images",
+      "success": true
+    },
+    {
+      "task": "perf:alt",
+      "success": true
+    },
+    {
+      "task": "perf:sitemap",
+      "success": true
+    }
+  ]
+}

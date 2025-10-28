@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://www.articpulizie.it/sitemap.xml
+
+# Prevent indexing of specific paths if needed
+# Disallow: /admin/
+# Disallow: /api/

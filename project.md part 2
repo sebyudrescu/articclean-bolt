@@ -1,0 +1,201 @@
+# ⚙️ PRD – Parte 2: Ottimizzazioni Tecniche e Performance per www.articpulizie.it
+
+## 🎯 Obiettivo
+Rendere il sito *www.articpulizie.it* più veloce, stabile e performante.  
+Migliorare le metriche **Core Web Vitals (LCP, CLS, FID)**, ottimizzare immagini, codice e risorse statiche per garantire caricamenti rapidi e un’esperienza utente eccellente, con l’obiettivo di superare i concorrenti nei risultati di ricerca locali.
+
+---
+
+## 🖼️ 1. Ottimizzazione Immagini
+
+### 1.1 Compressione automatica
+- Implementare compressione **lossless o near-lossless** (es. tramite `sharp`, `imagemin`, o strumenti integrati nel CMS).  
+- Ogni immagine deve pesare **< 200 KB**.
+- Formati consigliati:
+  - **WebP** o **AVIF** per immagini di grandi dimensioni.
+  - **JPEG 80 %** per foto standard.
+  - **PNG** solo se serve trasparenza (es. loghi).
+
+### 1.2 Lazy Loading
+- Aggiungere `loading="lazy"` a tutte le immagini **non visibili above the fold**.
+- Applicare anche a iframe o video.
+
+### 1.3 Nomenclatura file
+Tutti i file devono seguire schema SEO-friendly:
+pulizie-[servizio]-[citta].webp
+
+markdown
+Copy code
+Esempi:
+- `pulizie-uffici-brescia.webp`
+- `sanificazione-ambienti-chiari.webp`
+
+### 1.4 Tag ALT e dimensioni
+- Ogni immagine deve avere attributo `alt` descrittivo, con parole chiave:
+  ```html
+  <img src="pulizie-uffici-brescia.webp" 
+       alt="Pulizie uffici a Brescia con personale Artic Pulizie"
+       width="600" height="400">
+Specificare sempre width e height per evitare layout shift (CLS).
+
+🧩 2. Ottimizzazione Codice e Risorse Statiche
+2.1 Minificazione
+Unire e comprimere file CSS e JS:
+
+Output: style.min.css, bundle.min.js
+
+Rimuovere spazi, commenti e caratteri inutili.
+
+Caricare script dopo il contenuto principale:
+
+html
+Copy code
+<script src="bundle.min.js" defer></script>
+2.2 Critical CSS
+Estrarre il CSS critico per il contenuto above-the-fold e inserirlo inline nel <head>.
+
+Caricare il CSS restante in modo asincrono:
+
+html
+Copy code
+<link rel="preload" href="style.min.css" as="style" onload="this.rel='stylesheet'">
+2.3 Eliminazione CSS/JS non usato
+Analizzare il codice con PurgeCSS o simili.
+
+Rimuovere stili e script inutilizzati (soprattutto se il sito usa WordPress, Elementor, o builder).
+
+🚀 3. Caching e Compressione
+3.1 Browser Caching
+Aggiornare .htaccess o configurazione server:
+
+apache
+Copy code
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/webp "access plus 6 months"
+  ExpiresByType image/jpeg "access plus 6 months"
+  ExpiresByType text/css "access plus 1 month"
+  ExpiresByType application/javascript "access plus 1 month"
+</IfModule>
+3.2 GZIP o Brotli Compression
+Abilitare compressione server-side:
+
+apache
+Copy code
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css application/javascript
+</IfModule>
+3.3 HTTP/2
+Se supportato dall’hosting, abilitare HTTP/2 per caricamento parallelo più rapido.
+
+🏗️ 4. Struttura HTML e Accessibilità
+4.1 HTML semantico
+Ogni pagina deve avere:
+
+<header> con logo e navigazione.
+
+<main> con contenuto primario.
+
+<footer> con NAP (nome, indirizzo, telefono) coerente.
+
+Evitare contenuti caricati solo via JavaScript.
+
+4.2 Accessibilità (ARIA)
+Aggiungere aria-label a link o icone senza testo.
+
+Verificare contrasto colori minimo 4.5:1.
+
+Garantire navigazione da tastiera.
+
+⚙️ 5. Script JS e Priorità
+5.1 Gestione Script
+Caricare solo script necessari.
+
+Tutti gli script non critici devono usare defer:
+
+html
+Copy code
+<script src="analytics.js" defer></script>
+Evitare librerie duplicate (es. jQuery due volte).
+
+5.2 Lazy Load JS
+Caricare moduli non essenziali (slider, mappe) on-scroll o on-click.
+
+Usare IntersectionObserver per triggerare caricamento.
+
+📊 6. Core Web Vitals e Lighthouse
+6.1 Target Metriche
+Metrica	Obiettivo
+LCP (Largest Contentful Paint)	< 2.5 s
+CLS (Cumulative Layout Shift)	< 0.1
+FID (First Input Delay)	< 100 ms
+TTFB (Time to First Byte)	< 1 s
+
+Codex deve configurare il sito per rispettare questi target tramite:
+
+Lazy load immagini.
+
+Ottimizzazione CSS e JS.
+
+Preload di risorse critiche (font, immagini hero).
+
+6.2 Lighthouse Automation
+Integrare script di test automatizzato (es. Node):
+
+bash
+Copy code
+npm run lighthouse -- --output=json --output-path=reports/lighthouse.json
+Obiettivo: punteggio Performance > 90/100.
+
+Salvare risultati in /reports/lighthouse/.
+
+🧠 7. Ottimizzazione Server-Side e Database
+7.1 Database
+Pulire revisioni, transients e cache obsolete.
+
+Ottimizzare tabelle (OPTIMIZE TABLE).
+
+7.2 CDN
+Configurare CDN (es. Cloudflare o BunnyCDN).
+
+Attivare cache edge e compressione Brotli.
+
+7.3 Redirect e 404
+Creare regole di redirect 301 per URL obsoleti.
+
+Gestire 404 personalizzata con link interni.
+
+🧾 8. QA e Report Finale
+8.1 Test Post-Implementazione
+Codex deve generare report con:
+
+Dimensione media pagine.
+
+Numero richieste HTTP.
+
+Tempo medio caricamento mobile e desktop.
+
+Risultati PageSpeed e Lighthouse pre/post.
+
+8.2 Check Automatici
+Implementare script periodici che:
+
+Verifichino ALT tag presenti.
+
+Controllino file > 250 KB.
+
+Misurino TTFB e LCP per pagina.
+
+Output JSON/Markdown in /reports/performance-YYYY-MM-DD.json.
+
+✅ Risultato Atteso
+Dopo l’esecuzione di questa Parte 2:
+
+Il sito sarà più veloce del 90 % dei competitor locali.
+
+Tutte le pagine saranno ottimizzate per Core Web Vitals.
+
+Google assegnerà un ranking boost per performance e UX.
+
+Il sito sarà pronto per le automazioni e contenuti SEO (Parte 3).
+

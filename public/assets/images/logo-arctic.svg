@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 180">
+  <rect width="720" height="180" fill="#ffffff"/>
+  <g font-family="'Brush Script MT', 'Lucida Handwriting', cursive" font-size="96" fill="#2d6aa0">
+    <text x="32" y="110">AC</text>
+  </g>
+  <g font-family="'Montserrat', 'Helvetica Neue', Arial, sans-serif" fill="#1b6fb8">
+    <text x="160" y="92" font-size="52" font-weight="600">Artic Clean Service</text>
+    <text x="160" y="130" font-size="26" fill="#2d6aa0">Impresa di Pulizie Civili e Industriali</text>
+  </g>
+  <text x="620" y="150" font-family="'Montserrat', 'Helvetica Neue', Arial, sans-serif" font-size="24" fill="#2d6aa0" text-anchor="end">dal 2005</text>
+</svg>

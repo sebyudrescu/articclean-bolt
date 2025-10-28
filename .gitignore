@@ -1,0 +1,11 @@
+# deps & build
+node_modules/
+dist/
+.vite/
+.vscode/
+.vercel/
+*.log
+
+# env
+.env*
+path/to/id_ed25519

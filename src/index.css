@@ -1,0 +1,117 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom CSS for the Artic Pulizie website */
+
+/* Hero section animations - Optimized */
+.wave-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  z-index: 1;
+  will-change: transform;
+}
+
+.wave {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 200%;
+  height: 200px;
+  background: linear-gradient(45deg, rgba(14, 165, 233, 0.05), rgba(6, 182, 212, 0.05));
+  border-radius: 50%;
+  animation: wave 20s infinite linear;
+  will-change: transform;
+}
+
+.wave-1 {
+  animation-delay: -5s;
+}
+
+.wave-2 {
+  animation-delay: -10s;
+  background: linear-gradient(45deg, rgba(6, 182, 212, 0.03), rgba(20, 184, 166, 0.03));
+}
+
+.wave-3 {
+  animation-delay: -15s;
+  background: linear-gradient(45deg, rgba(20, 184, 166, 0.02), rgba(14, 165, 233, 0.02));
+}
+
+@keyframes wave {
+  0% { transform: translateX(-50%) translateY(0) rotate(0deg); }
+  100% { transform: translateX(-50%) translateY(0) rotate(360deg); }
+}
+
+/* Particles - Optimized */
+.particles-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+}
+
+.particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: linear-gradient(45deg, #0ea5e9, #06b6d4);
+  border-radius: 50%;
+  animation: float 15s infinite ease-in-out;
+  will-change: transform, opacity;
+}
+
+.particle-1 {
+  top: 20%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.particle-2 {
+  top: 60%;
+  left: 80%;
+  animation-delay: -5s;
+}
+
+@keyframes float {
+  0%, 100% { transform: translate3d(0, 0, 0); opacity: 0.3; }
+  50% { transform: translate3d(0, -40px, 0); opacity: 0.5; }
+}
+
+/* Button styles */
+.primary-cta-button {
+  border-radius: 0.75rem;
+  font-weight: 700;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 25px -5px rgba(14, 165, 233, 0.3);
+}
+
+.white-bg-button {
+  background: white;
+  border-radius: 0.75rem;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+/* Typography */
+.hero-title-montserrat {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+  letter-spacing: -0.02em;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .wave {
+    height: 100px;
+  }
+  
+  .particle {
+    width: 2px;
+    height: 2px;
+  }
+}

@@ -1,0 +1,35 @@
+# Files and directories excluded from Bolt.new imports
+# These entries keep the project within Bolt's repo size limits while preserving
+# the source code, configuration, and published assets required to run the Vite app.
+
+# Dependencies and build outputs (regenerated in Bolt)
+node_modules/
+dist/
+.vite/
+.vscode/
+.vercel/
+
+# Local environment artifacts
+.env*
+*.log
+
+# Operational assets that are not required to run the app inside Bolt
+immagini/
+reports/
+qa-report.csv
+supabase/
+scripts/
+
+# Large documentation bundles and planning material
+IMPLEMENTATION_SUMMARY.md
+EXAMPLE_CONTENT_EXPANSION.md
+project.md
+project.md\ part\ 2
+project.md\ part\ 3
+artic-seo-audit.md
+README_LOCAL_PAGES.md
+
+# Generated content archives or temp bundles (if present)
+*.tar
+*.zip
+*.gz
