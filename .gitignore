@@ -9,3 +9,4 @@ dist/
 # env
 .env*
 path/to/id_ed25519
+.env
